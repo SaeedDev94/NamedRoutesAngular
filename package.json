@@ -2,7 +2,7 @@
   "name": "named-routes-angular",
   "description": "create and use named routes for angular",
   "repository": "Saeed-Pooyanfar/NamedRoutesAngular",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "SaeedPooyanfar",
   "peerDependencies": {
     "@angular/common": "^7.2.0",
