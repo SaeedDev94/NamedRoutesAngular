@@ -1,20 +1,9 @@
 # Angular named routes
 As a laravel developer i like to have named routes feature in angular too!
 
-# Install
+# Install compiled version
 ```
 npm install named-routes-angular --save
-```
-
-# Add lib to tsconfig.json
-```javascript
-...
-"typeRoots": [
-  "node_modules/@types",
-  "node_modules/named-routes-angular",
-  ...
-],
-...
 ```
 
 # Declare custom "namedRoute" pipe in app.module.ts
