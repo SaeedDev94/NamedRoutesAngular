@@ -23,42 +23,50 @@ export class AppModule {}
 
 # Define routes in app-routing.module.ts
 ```typescript
-import { ModuleWithProviders, NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { NamedRoutesService } from 'named-routes-angular';
-
-export function routerModule(): ModuleWithProviders {
-  const namedRoutes = new NamedRoutesService();
-  namedRoutes.group({
-    prefix: 'hero',
-    name: 'hero.'
-  }, [
-    {
-      path: '',
-      component: HeroesComponent,
-      data: {
-        name: 'index'
-      }
+...
+const routes: Routes = [
+  {
+    path: 'hero',
+    data: {
+      name: 'hero'
     },
-    {
-      path: '/:id',
-      component: HeroDetailComponent,
-      data: {
-        name: 'edit'
+    children: [
+      {
+        path: '',
+        component: HeroesComponent,
+        data: {
+          name: 'index'
+        }
+      },
+      {
+        path: ':id',
+        children: [
+          {
+            path: 'show',
+            component: HeroShowComponent,
+            data: {
+              name: 'show'
+            }
+          },
+          {
+            path: 'edit',
+            component: HeroEditComponent,
+            data: {
+              name: 'edit'
+            }
+          }
+        ]
       }
-    }
-  ]);
-  namedRoutes.main('hero.index');
-  return RouterModule.forRoot(namedRoutes.all());
-}
+    ]
+  }
+];
 
 @NgModule({
-  imports: [routerModule()],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
+...
 ```
 
 # Use it in view

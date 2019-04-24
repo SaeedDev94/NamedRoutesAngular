@@ -1,35 +1,28 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Router } from '@angular/router';
+import { NamedRoutesService } from './named-routes.service';
 
 @Pipe({
   name: 'namedRoute'
 })
 export class NamedRoutePipe implements PipeTransform {
-  constructor(private router: Router) {}
+
+  constructor(private namedRoutesService: NamedRoutesService) {}
 
   transform(value: string, params = []): string {
-    let path = null;
-    const routes = this.router.config;
-    for (let i = 0 ; routes.length > i ; i++) {
-      const route = routes[i];
-      if (typeof route.data === 'undefined' || typeof route.data.name === 'undefined') {
-        continue;
-      }
-      if (route.data.name === value) {
-        path = route.path;
-        break;
-      }
-    }
-    if (path === null) {
+    const namedRoutes = this.namedRoutesService.getNamedRoutes();
+    const namedRoute = namedRoutes.find(route => {
+      return route.name === value;
+    });
+    if (!namedRoute) {
       throw new Error('not found any route with given name: "' + value + '"');
     }
-    const pathParts = path.split('/');
+    const pathParts = namedRoute.path.split('/');
     for (let i = 0 ; pathParts.length > i ; i++) {
       if (pathParts[i].indexOf(':') === -1) {
         continue;
       }
       pathParts[i] = params.shift();
     }
-    return '/' + pathParts.join('/');
+    return pathParts.join('/');
   }
 }
