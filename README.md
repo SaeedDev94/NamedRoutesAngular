@@ -19,6 +19,7 @@ import { NamedRoutePipe } from 'named-routes-angular';
   ...
 })
 export class AppModule {}
+...
 ```
 
 # Define routes in app-routing.module.ts
