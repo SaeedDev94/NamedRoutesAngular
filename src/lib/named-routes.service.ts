@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Route, Router, Routes } from '@angular/router';
 
-export interface NamedRoutes {
+export interface NamedRoute {
   path: string;
   name: string;
 }
+
+export interface NamedRoutes extends Array<NamedRoute> {}
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export interface NamedRoutes {
 export class NamedRoutesService {
 
   private id = 0;
-  private namedRoutes: NamedRoutes[] = [];
+  private namedRoutes: NamedRoutes = [];
   private routes: Routes = [];
   private endPoints: Routes = [];
 
@@ -92,7 +94,7 @@ export class NamedRoutesService {
     });
   }
 
-  getNamedRoutes(): NamedRoutes[] {
+  getNamedRoutes(): NamedRoutes {
     return this.namedRoutes;
   }
 }
