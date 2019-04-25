@@ -2,9 +2,13 @@ import { NgModule } from '@angular/core';
 import { NamedRoutePipe } from './named-route.pipe';
 
 @NgModule({
-  declarations: [NamedRoutePipe],
+  declarations: [
+    NamedRoutePipe
+  ],
   imports: [
   ],
-  exports: []
+  exports: [
+    NamedRoutePipe
+  ]
 })
-export class NamedRoutesModule { }
+export class NamedRoutesModule {}
