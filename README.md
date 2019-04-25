@@ -6,15 +6,15 @@ As a laravel developer i like to have named routes feature in angular too!
 npm install named-routes-angular --save
 ```
 
-# Declare custom "namedRoute" pipe in app.module.ts
+# Import "NamedRoutesModule" in app.module.ts
 ```typescript
 ...
-import { NamedRoutePipe } from 'named-routes-angular';
+import { NamedRoutesModule } from 'named-routes-angular';
 
 @NgModule({
-  declarations: [
+  imports: [
     ...
-    NamedRoutePipe
+    NamedRoutesModule
   ],
   ...
 })
